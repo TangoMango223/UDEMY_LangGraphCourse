@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field
 llm = ChatOpenAI(temperature=0)
 
 
+# This is NOT a state - this is a Base Model used to put a structure to output
 class GradeDocuments(BaseModel):
     """Binary score for relevance check on retrieved documents."""
 
@@ -25,4 +26,5 @@ grade_prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
+# This object calsl upon an LLM defined to grade the documents retrieved
 retrieval_grader = grade_prompt | structured_llm_grader
