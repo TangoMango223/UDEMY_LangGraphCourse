@@ -27,8 +27,32 @@ doc_splits = text_splitter.split_documents(docs_list)
 #     persist_directory="./.chroma",
 # )
 
+# We defined the retriever settings here...
 retriever = Chroma(
     collection_name="rag-chroma",
     persist_directory="./.chroma",
     embedding_function=OpenAIEmbeddings(),
 ).as_retriever()
+
+# Example explanation code:
+# The retriever is a LangChain Runnable object that can be:
+
+# 1. Invoked directly
+# docs = retriever.invoke("What is prompt engineering?")
+
+# # 2. Used in an async context
+# docs = await retriever.ainvoke("What is prompt engineering?")
+
+# # 3. Used as part of a chain
+# from langchain.schema import StrOutputParser
+# from langchain.prompts import ChatPromptTemplate
+
+# chain = (
+#     {"context": retriever, "question": RunnablePassthrough()} 
+#     | ChatPromptTemplate.from_template("""Answer the question based on context: {context}
+    
+#     Question: {question}""")
+#     | StrOutputParser()
+#)
+
+# Objects like Retriever are RUNNABLE OBJECTs -> 
