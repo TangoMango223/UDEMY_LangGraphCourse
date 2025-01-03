@@ -33,4 +33,4 @@ pytest==7.4.3
 # LangGraph:
 langgraph>=0.0.10          # Add this - core LangGraph package
 tavily-python>=0.1.3       # Add this if using Tavily search
-langgraph-checkpoint-sqlite
+langgraph-checkpoint-sqlite # needed for sqlite3 checkpointer
