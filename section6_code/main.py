@@ -37,8 +37,6 @@ builder.add_edge("step_3", END)
 # option 1 - use the built-in memory:
 memory = MemorySaver()
 
-# graph = builder.compile(checkpointer=memory)
-
 graph = builder.compile(checkpointer=memory, interrupt_before=["human_feedback"])
 
 graph.get_graph().draw_mermaid_png(output_file_path="graph.png")
